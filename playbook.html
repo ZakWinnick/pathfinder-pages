@@ -1,0 +1,1429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pathfinder Rewards Playbook | Rangeway Energy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --sunset-coral: #F09060;
+            --golden-highway: #FFB366;
+            --mountain-charcoal: #4A4A4A;
+            --coastal-cream: #F5DEB3;
+            --ocean-deep: #2C5F7C;
+            --fog-gray: #B8B8B8;
+            --white: #FFFFFF;
+            --light-gray: #F8F8F8;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--mountain-charcoal);
+            background: var(--white);
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--mountain-charcoal) 0%, var(--ocean-deep) 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+
+        /* Layout */
+        .container {
+            display: flex;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            width: 300px;
+            background: var(--light-gray);
+            padding: 2rem 1.5rem;
+            position: sticky;
+            top: 100px;
+            height: calc(100vh - 100px);
+            overflow-y: auto;
+            border-right: 2px solid #e0e0e0;
+        }
+
+        .sidebar h3 {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--fog-gray);
+            margin-bottom: 1rem;
+        }
+
+        .sidebar nav ul {
+            list-style: none;
+        }
+
+        .sidebar nav ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .sidebar nav ul li a {
+            color: var(--mountain-charcoal);
+            text-decoration: none;
+            display: block;
+            padding: 0.5rem 0.75rem;
+            border-radius: 6px;
+            transition: all 0.2s;
+            font-size: 0.95rem;
+        }
+
+        .sidebar nav ul li a:hover {
+            background: white;
+            color: var(--sunset-coral);
+            transform: translateX(4px);
+        }
+
+        .sidebar nav ul li a.active {
+            background: var(--sunset-coral);
+            color: white;
+            font-weight: 600;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 3rem;
+            max-width: 900px;
+        }
+
+        .section {
+            margin-bottom: 4rem;
+            scroll-margin-top: 120px;
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            color: var(--mountain-charcoal);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--sunset-coral);
+        }
+
+        .section h3 {
+            font-size: 1.8rem;
+            color: var(--ocean-deep);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .section h4 {
+            font-size: 1.3rem;
+            color: var(--mountain-charcoal);
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .section p {
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+        }
+
+        .section ul, .section ol {
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .section li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Tier Cards */
+        .tier-overview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .tier-mini-card {
+            background: white;
+            border: 2px solid var(--light-gray);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .tier-mini-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            border-color: var(--sunset-coral);
+        }
+
+        .tier-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .tier-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--mountain-charcoal);
+            margin-bottom: 0.25rem;
+        }
+
+        .tier-price {
+            font-size: 1.1rem;
+            color: var(--sunset-coral);
+            font-weight: 600;
+        }
+
+        /* Info Boxes */
+        .info-box {
+            background: var(--light-gray);
+            border-left: 4px solid var(--sunset-coral);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 6px;
+        }
+
+        .info-box.warning {
+            border-left-color: var(--golden-highway);
+            background: #FFF9F0;
+        }
+
+        .info-box.success {
+            border-left-color: #4CAF50;
+            background: #F0F9F0;
+        }
+
+        .info-box h4 {
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        th {
+            background: var(--mountain-charcoal);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        tr:hover {
+            background: var(--light-gray);
+        }
+
+        /* Code Blocks */
+        code {
+            background: var(--light-gray);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        pre {
+            background: var(--mountain-charcoal);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+        }
+
+        /* Checklist */
+        .checklist {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .checklist li {
+            padding-left: 2rem;
+            position: relative;
+            margin-bottom: 0.75rem;
+        }
+
+        .checklist li::before {
+            content: '□';
+            position: absolute;
+            left: 0;
+            font-size: 1.2rem;
+            color: var(--fog-gray);
+        }
+
+        /* Mobile Menu Toggle */
+        .mobile-menu-toggle {
+            display: none;
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--sunset-coral);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .sidebar {
+                position: fixed;
+                left: -300px;
+                top: 0;
+                height: 100vh;
+                z-index: 999;
+                transition: left 0.3s;
+                box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+            }
+
+            .sidebar.active {
+                left: 0;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .main-content {
+                padding: 2rem 1.5rem;
+            }
+
+            .section h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.5rem;
+            }
+
+            .main-content {
+                padding: 1.5rem 1rem;
+            }
+
+            .section h2 {
+                font-size: 1.75rem;
+            }
+
+            .section h3 {
+                font-size: 1.5rem;
+            }
+
+            .tier-overview {
+                grid-template-columns: 1fr;
+            }
+
+            table {
+                font-size: 0.85rem;
+            }
+
+            th, td {
+                padding: 0.75rem 0.5rem;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            .sidebar, .mobile-menu-toggle {
+                display: none;
+            }
+
+            .main-content {
+                max-width: 100%;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>📖 Pathfinder Rewards Playbook</h1>
+        <p>Version 1.0 | October 2025 | Rangeway Energy</p>
+    </header>
+
+    <div class="container">
+        <aside class="sidebar" id="sidebar">
+            <h3>Contents</h3>
+            <nav>
+                <ul>
+                    <li><a href="#overview" class="nav-link">Program Overview</a></li>
+                    <li><a href="#tiers" class="nav-link">Membership Tiers</a></li>
+                    <li><a href="#technology" class="nav-link">Technology & Integration</a></li>
+                    <li><a href="#launch" class="nav-link">Launch Strategy</a></li>
+                    <li><a href="#marketing" class="nav-link">Marketing Guidelines</a></li>
+                    <li><a href="#financials" class="nav-link">Financial Projections</a></li>
+                    <li><a href="#metrics" class="nav-link">Success Metrics</a></li>
+                    <li><a href="#operations" class="nav-link">Operational Guidelines</a></li>
+                    <li><a href="#partnerships" class="nav-link">Partnership Framework</a></li>
+                    <li><a href="#journeys" class="nav-link">Member Journey Maps</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <!-- Program Overview -->
+            <section id="overview" class="section">
+                <h2>Program Overview</h2>
+                
+                <h3>Program Philosophy</h3>
+                <p>Pathfinder Rewards transforms charging stops into a journey-based rewards experience. Like the best hotel loyalty programs, we focus on <strong>recognition, exclusive experiences, and making members feel valued</strong> - not just transactional discounts.</p>
+                
+                <p>The hub-satellite network creates unique opportunities: Basecamps offer premium experiences, while Waystations provide seamless convenience, all connected through one loyalty ecosystem.</p>
+
+                <h3>Core Positioning</h3>
+                <div class="info-box">
+                    <p><strong>"We're not rewarding you for charging your car. We're rewarding you for exploring America's scenic highways with us."</strong></p>
+                    <p>This positions Pathfinder Rewards as a <strong>travel lifestyle program</strong> that happens to include EV charging, rather than a charging network that happens to have a points program.</p>
+                </div>
+
+                <h3>Key Differentiators</h3>
+                <ol>
+                    <li><strong>Hospitality-grade loyalty</strong> - We learned from Marriott Bonvoy, not gas station rewards cards</li>
+                    <li><strong>Experience-first benefits</strong> - Events, exclusive access, community over pure discounts</li>
+                    <li><strong>Hub-satellite coordination</strong> - Unified member experience across all locations</li>
+                    <li><strong>Invite-only elite tier</strong> - Trailblazer status creates aspirational goal</li>
+                    <li><strong>Network effects</strong> - Benefits grow as our corridor coverage expands</li>
+                </ol>
+            </section>
+
+            <!-- Membership Tiers -->
+            <section id="tiers" class="section">
+                <h2>Membership Tiers</h2>
+
+                <div class="tier-overview">
+                    <div class="tier-mini-card">
+                        <div class="tier-icon">🗺️</div>
+                        <div class="tier-name">Explorer</div>
+                        <div class="tier-price">Free</div>
+                    </div>
+                    <div class="tier-mini-card">
+                        <div class="tier-icon">⛰️</div>
+                        <div class="tier-name">Voyager</div>
+                        <div class="tier-price">$12/mo or $99/yr</div>
+                    </div>
+                    <div class="tier-mini-card">
+                        <div class="tier-icon">🏔️</div>
+                        <div class="tier-name">Pioneer</div>
+                        <div class="tier-price">$25/mo or $249/yr</div>
+                    </div>
+                    <div class="tier-mini-card">
+                        <div class="tier-icon">🏕️</div>
+                        <div class="tier-name">Trailblazer</div>
+                        <div class="tier-price">Invite Only</div>
+                    </div>
+                </div>
+
+                <h3>🗺️ EXPLORER (Free Tier)</h3>
+                <p><em>Your journey starts here</em></p>
+                
+                <h4>Qualification</h4>
+                <p>Sign up via app or at any location</p>
+
+                <h4>Annual Fee</h4>
+                <p>Free</p>
+
+                <h4>Core Benefits</h4>
+                <ul>
+                    <li>5% discount on all charging sessions network-wide</li>
+                    <li>Birthday month: Free coffee at any Basecamp</li>
+                    <li>Early access to new site openings (24 hours before public)</li>
+                    <li>Digital journey map: Track Rangeway charging history</li>
+                    <li>Member-only newsletter: "Field Notes from the Road" with route guides and seasonal travel tips</li>
+                    <li>Basic profile: Name recognition on charger screens ("Welcome back, [Name]!")</li>
+                </ul>
+
+                <h4>Basecamp Exclusive Benefits</h4>
+                <ul>
+                    <li>10% discount on Basecamp café and retail purchases</li>
+                    <li>Access to Basecamp events: Grand openings, community meetups, seasonal gatherings</li>
+                </ul>
+
+                <h4>Progression Path</h4>
+                <p>Automatic upgrade to Voyager after 20 charging sessions OR $600 spend in a calendar year</p>
+
+                <hr style="margin: 2rem 0; border: none; border-top: 2px solid var(--light-gray);">
+
+                <h3>⛰️ VOYAGER (Paid Mid-Tier)</h3>
+                <p><em>For the regular road warrior</em></p>
+
+                <h4>Qualification</h4>
+                <ul>
+                    <li>Purchase membership ($12/month or $99/year), OR</li>
+                    <li>Earn through 20 sessions/$600 spend as Explorer (then $12/month or $79/year renewal)</li>
+                </ul>
+
+                <h4>Membership Fee</h4>
+                <ul>
+                    <li><strong>Monthly:</strong> $12/month</li>
+                    <li><strong>Annual:</strong> $99/year ($79/year renewal for earned qualifiers)</li>
+                    <li><em>Annual saves $45/year vs. monthly</em></li>
+                </ul>
+
+                <h4>Core Benefits</h4>
+                <ul>
+                    <li>All Explorer benefits, plus:</li>
+                    <li>10% discount on all charging sessions (double the Explorer rate)</li>
+                    <li>2 free charging sessions per year (up to $50 value each, annual members only)</li>
+                    <li>Monthly "Voyager Perk": Rotating benefit like free retail item, beverage upgrade, or bonus charging credit</li>
+                    <li>Enhanced digital experience:
+                        <ul>
+                            <li>Real-time charger availability at all sites</li>
+                            <li>Session history and carbon offset tracking</li>
+                        </ul>
+                    </li>
+                    <li>Exclusive Voyager challenges: "Charge 5 times this quarter, get a $25 credit"</li>
+                </ul>
+
+                <h4>Basecamp Exclusive Benefits</h4>
+                <ul>
+                    <li>20% discount on all Basecamp café and retail</li>
+                    <li>Free artisan coffee upgrade (any café beverage → premium/specialty drink)</li>
+                    <li>Local partnerships: Discounts at nearby hotels, attractions, restaurants (varies by region)</li>
+                    <li>First access to Basecamp exclusive merchandise</li>
+                </ul>
+
+                <h4>Progression Path</h4>
+                <p>Automatic upgrade to Pioneer after 50 sessions OR $2,000 spend in calendar year</p>
+
+                <hr style="margin: 2rem 0; border: none; border-top: 2px solid var(--light-gray);">
+
+                <h3>🏔️ PIONEER (Paid Premium Tier)</h3>
+                <p><em>For founding members and super fans</em></p>
+
+                <h4>Qualification</h4>
+                <ul>
+                    <li>Purchase membership ($25/month or $249/year), OR</li>
+                    <li>Earn through 50 sessions/$2,000 spend as Voyager (then $20/month or $199/year renewal)</li>
+                    <li><strong>Founding Member option:</strong> First 500 members lock in $199/year for life</li>
+                </ul>
+
+                <h4>Membership Fee</h4>
+                <ul>
+                    <li><strong>Monthly:</strong> $25/month</li>
+                    <li><strong>Annual:</strong> $249/year ($199/year renewal for earned qualifiers or Founding Members)</li>
+                    <li><em>Annual saves $51/year vs. monthly</em></li>
+                </ul>
+
+                <h4>Core Benefits</h4>
+                <ul>
+                    <li>All Voyager benefits, plus:</li>
+                    <li>15% discount on all charging sessions</li>
+                    <li>$100 annual charging credit (auto-applied, annual members only)</li>
+                    <li>Unlimited free charging sessions on your birthday</li>
+                    <li>Pioneer badge: Visible on charger screens and in app - staff recognition at Basecamps</li>
+                    <li>Exclusive Pioneer merchandise package (hat, water bottle, premium gear)</li>
+                    <li>Annual Pioneer Summit invitation: Exclusive event at a flagship Basecamp with networking, adventures, and previews of new sites</li>
+                </ul>
+
+                <h4>Basecamp Exclusive Benefits</h4>
+                <ul>
+                    <li>30% discount on all Basecamp café and retail</li>
+                    <li>Complimentary food item with any café beverage purchase</li>
+                    <li>"Behind the scenes" hub tours: See the NOC, maintenance operations, and meet the team</li>
+                    <li>Premium local partnerships:
+                        <ul>
+                            <li>Discounted adventure experiences (hiking tours, kayaking, overlanding)</li>
+                            <li>VIP access at regional attractions</li>
+                        </ul>
+                    </li>
+                    <li>Regional Ambassador opportunities: Represent Rangeway at local EV events</li>
+                </ul>
+
+                <h4>Exclusive Experiences</h4>
+                <ul>
+                    <li>Invitation-only "Pioneer Road Rallies": Organized group drives along scenic corridors with Rangeway-hosted stops</li>
+                    <li>First to know, first to charge: Beta test new locations before public opening</li>
+                    <li>Advisory panel: Quarterly surveys and input sessions on new amenities, site locations, and program features</li>
+                    <li>Annual print coffee table book: "The Year in Rangeway" featuring member photos and stories</li>
+                </ul>
+
+                <h4>Progression Path</h4>
+                <p>Invitation to Trailblazer tier after meeting exceptional criteria</p>
+
+                <hr style="margin: 2rem 0; border: none; border-top: 2px solid var(--light-gray);">
+
+                <h3>🏕️ TRAILBLAZER (Invite-Only Elite Tier)</h3>
+                <p><em>For the most devoted ambassadors of the Rangeway journey</em></p>
+
+                <h4>Qualification</h4>
+                <div class="info-box warning">
+                    <p><strong>Invitation only</strong> - cannot be purchased</p>
+                    <p>Criteria for invitation:</p>
+                    <ul>
+                        <li>100+ charging sessions in a calendar year, AND</li>
+                        <li>Active Pioneer member for 2+ consecutive years, AND</li>
+                        <li>Demonstrated brand advocacy (referrals, social media, community leadership, advisory panel participation)</li>
+                        <li>OR special recognition by CEO for extraordinary contributions to Rangeway community</li>
+                    </ul>
+                </div>
+
+                <h4>Annual Fee</h4>
+                <p>Complimentary (invited members only)</p>
+
+                <h4>Limited Availability</h4>
+                <p>Maximum 250 members nationwide</p>
+
+                <h4>Core Benefits</h4>
+                <ul>
+                    <li>All Pioneer benefits, plus:</li>
+                    <li>20% discount on all charging sessions (highest tier discount)</li>
+                    <li>$500 annual charging credit (auto-applied)</li>
+                    <li>Lifetime Trailblazer status: Once invited, maintain status with minimum 30 sessions/year</li>
+                    <li>Trailblazer concierge: Dedicated concierge team member (one point of contact)</li>
+                    <li>Exclusive Trailblazer merchandise: Limited-edition gear not available to other tiers</li>
+                    <li>Annual Trailblazer Expedition: All-expenses-paid multi-day adventure along a new scenic corridor</li>
+                </ul>
+
+                <h4>Basecamp Exclusive Benefits</h4>
+                <ul>
+                    <li>40% discount on all Basecamp café and retail</li>
+                    <li>Complimentary meal once per month at any Basecamp café (up to $30 value)</li>
+                    <li>Private Basecamp experiences: Behind-the-scenes site tours, meet the leadership team</li>
+                    <li>"Trailblazer Table": Reserved seating at all Basecamp events and launches</li>
+                </ul>
+
+                <h4>Advisory & Influence</h4>
+                <ul>
+                    <li>Executive Advisory Board: Quarterly video calls with CEO and leadership team</li>
+                    <li>Early site selection input: Vote on potential new locations before acquisition</li>
+                    <li>Product testing: First access to new amenities, technology features, merchandise</li>
+                    <li>Brand Ambassador program: Represent Rangeway at national EV shows, conferences, media opportunities</li>
+                </ul>
+
+                <h4>Recognition</h4>
+                <ul>
+                    <li>Trailblazer Hall of Fame: Profile featured on Rangeway website and in annual member magazine</li>
+                    <li>Permanent plaque: Name on recognition wall at flagship Basecamp</li>
+                    <li>"Founding Trailblazer" designation: First 100 invited members get special lifetime recognition</li>
+                </ul>
+            </section>
+
+            <!-- Technology & Integration -->
+            <section id="technology" class="section">
+                <h2>Technology & Integration</h2>
+
+                <h3>Digital Platform Requirements</h3>
+                
+                <h4>Mobile App Core Functions</h4>
+                <ul>
+                    <li>Serves as membership card (QR code at chargers)</li>
+                    <li>Plug & Charge automatically applies member discounts (no app interaction needed)</li>
+                    <li>Push notifications for tier upgrades, earned benefits, special offers</li>
+                    <li>Member dashboard:
+                        <ul>
+                            <li>Real-time points/spend toward next tier</li>
+                            <li>Charging history</li>
+                            <li>Carbon offset calculator</li>
+                            <li>Upcoming benefits (free coffee, annual credits, etc.)</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <h4>Hub-Satellite Coordination</h4>
+                <ul>
+                    <li>Unified experience: Member status recognized at ALL locations (hubs and satellites)</li>
+                    <li>Basecamp staff training: Recognize Pioneer/Trailblazer badges, know member names</li>
+                    <li>Automated recognition at all locations: Charger screens welcome members by name, show tier status</li>
+                </ul>
+
+                <h3>CPMS Integration Requirements</h3>
+
+                <div class="info-box">
+                    <h4>Critical Integrations</h4>
+                    <ol>
+                        <li><strong>Member Recognition:</strong> Charger must identify member tier automatically via Plug & Charge</li>
+                        <li><strong>Dynamic Pricing:</strong> Apply correct discount based on tier (5%, 10%, 15%, 20%)</li>
+                        <li><strong>Credit Application:</strong> Automatically apply annual credits ($100 for Pioneer, $500 for Trailblazer)</li>
+                        <li><strong>Session Tracking:</strong> Count sessions toward tier progression thresholds</li>
+                        <li><strong>Spend Tracking:</strong> Track dollar spend toward tier qualification</li>
+                        <li><strong>Birthday Recognition:</strong> Flag birthday sessions for special treatment</li>
+                    </ol>
+                </div>
+
+                <h4>Data Exchange</h4>
+                <ul>
+                    <li>Real-time session data → App dashboard</li>
+                    <li>Member profile → Charger display (name, tier badge)</li>
+                    <li>Tier status → Staff tablets at Basecamps</li>
+                    <li>Challenge progress → Push notifications</li>
+                </ul>
+
+                <h3>Social & Community Features</h3>
+                <ul>
+                    <li><strong>"Road Stories" sharing:</strong> Members post photos/stories from Rangeway stops (Instagram-style feed in app)</li>
+                    <li><strong>Leaderboard:</strong> Opt-in rankings (sites visited, miles charged)</li>
+                    <li><strong>Referral rewards:</strong>
+                        <ul>
+                            <li>Explorer/Voyager: Refer a friend → both get $25 charging credit</li>
+                            <li>Pioneer: Refer 5 friends → free year of Pioneer membership</li>
+                            <li>Trailblazer: Unlimited referral credits</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Launch Strategy -->
+            <section id="launch" class="section">
+                <h2>Launch Strategy</h2>
+
+                <h3>Phase 1: Soft Launch (Months 1-3)</h3>
+                <p><strong>Timing:</strong> 3 months before first Basecamp opens</p>
+
+                <h4>Tactics</h4>
+                <ul>
+                    <li>Early bird pricing: Founding Pioneer @ $199/year (limit 500)</li>
+                    <li>Pre-launch Explorer signups: Build email list, collect route preferences</li>
+                    <li>Community seeding: Bay Area Rivian Club, NorCal EVs get early access codes</li>
+                    <li>Digital presence: Launch rewards page on website (rangeway.app), social media campaign</li>
+                </ul>
+
+                <div class="info-box success">
+                    <h4>Goal</h4>
+                    <p>1,000 Explorer signups, 150 Founding Pioneer members before opening</p>
+                </div>
+
+                <h4>Key Deliverables</h4>
+                <ul class="checklist">
+                    <li>Rangeway.app website live</li>
+                    <li>Mobile app beta (TestFlight for iOS, closed beta for Android)</li>
+                    <li>Email automation sequences set up</li>
+                    <li>Social media content calendar (3 months)</li>
+                    <li>Founding Member certificate design</li>
+                    <li>Early access codes generated</li>
+                </ul>
+
+                <hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--light-gray);">
+
+                <h3>Phase 2: Grand Opening Activation (Month 3-6)</h3>
+                <p><strong>Timing:</strong> Aligned with first hub cluster opening (1 Basecamp + 2 Waystations)</p>
+
+                <h4>Tactics</h4>
+                <ul>
+                    <li>First 100 sessions free for new members (Explorers)</li>
+                    <li>Basecamp launch event: Invite all early members, local EV clubs, press</li>
+                    <li>Referral blitz: "Invite 3 friends, unlock bonus benefits"</li>
+                    <li>Partnership announcements: Tourism board co-marketing, local business discounts</li>
+                </ul>
+
+                <div class="info-box success">
+                    <h4>Goal</h4>
+                    <p>3,000 total members (35% conversion to paid tiers over 6 months)</p>
+                </div>
+
+                <h4>Launch Day Checklist</h4>
+                <ul class="checklist">
+                    <li>All chargers operational and member recognition working</li>
+                    <li>Staff trained on all 4 membership tiers</li>
+                    <li>Basecamp café stocked and ready</li>
+                    <li>Pioneer merchandise available for purchase</li>
+                    <li>Digital signage displaying member benefits</li>
+                    <li>Press kit distributed to local media</li>
+                    <li>Social media coverage plan activated</li>
+                    <li>First 100 sessions tracking system active</li>
+                </ul>
+
+                <hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--light-gray);">
+
+                <h3>Phase 3: Optimization & Expansion (Month 6-12)</h3>
+                <p><strong>Timing:</strong> Post-launch, refining based on data</p>
+
+                <h4>Tactics</h4>
+                <ul>
+                    <li>Tiered challenges: "Charge at all 3 sites this quarter, earn $50 credit"</li>
+                    <li>Seasonal campaigns: "Summer Road Rally" exclusive routes for members</li>
+                    <li>Partner ecosystem expansion: Add 5-10 new local partnerships per region</li>
+                    <li>Pioneer Advisory Panel: Quarterly feedback sessions</li>
+                    <li>First Trailblazer invitations: Identify and invite top 25 members</li>
+                </ul>
+
+                <div class="info-box success">
+                    <h4>Goal</h4>
+                    <p>35% of charging sessions from paid members, 70 NPS from members</p>
+                </div>
+
+                <hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--light-gray);">
+
+                <h3>Phase 4: Network Effects (Year 2+)</h3>
+                <p><strong>Timing:</strong> As hub-satellite clusters expand to new regions</p>
+
+                <h4>Tactics</h4>
+                <ul>
+                    <li>Regional Pioneer Chapters: Organized meetups in each hub cluster region</li>
+                    <li>Cross-corridor challenges: "Charge in 3 different regions this year"</li>
+                    <li>Member-exclusive site previews: Pioneers get first charge at new locations</li>
+                    <li>National brand partnerships: Expand beyond regional to nationwide perks</li>
+                    <li>Trailblazer program maturity: 100-250 members nationwide, Executive Advisory Board</li>
+                </ul>
+
+                <div class="info-box success">
+                    <h4>Goal</h4>
+                    <p>Self-sustaining referral engine, members = brand ambassadors</p>
+                </div>
+            </section>
+
+            <!-- Marketing Guidelines -->
+            <section id="marketing" class="section">
+                <h2>Marketing Guidelines</h2>
+
+                <h3>Brand Voice & Messaging</h3>
+
+                <h4>Core Brand Voice</h4>
+                <ul>
+                    <li><strong>Warm & Welcoming:</strong> Like a great host, not a utility company</li>
+                    <li><strong>Adventurous:</strong> Inspiring exploration, not just transportation</li>
+                    <li><strong>Premium but Accessible:</strong> Elevated without being elitist</li>
+                    <li><strong>Community-Focused:</strong> "We" language, collective journey</li>
+                </ul>
+
+                <h4>Messaging Framework by Tier</h4>
+
+                <div class="info-box">
+                    <h4>Explorer</h4>
+                    <ul>
+                        <li><strong>Headline:</strong> "Start Your Adventure"</li>
+                        <li><strong>Focus:</strong> Low barrier to entry, instant gratification (5% discount)</li>
+                        <li><strong>CTA:</strong> "Join Free" / "Sign Up Today"</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Voyager</h4>
+                    <ul>
+                        <li><strong>Headline:</strong> "Make Every Journey Count"</li>
+                        <li><strong>Focus:</strong> Regular benefits, challenges, community</li>
+                        <li><strong>CTA:</strong> "Upgrade Your Experience" / "Become a Voyager"</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Pioneer</h4>
+                    <ul>
+                        <li><strong>Headline:</strong> "Lead the Way"</li>
+                        <li><strong>Focus:</strong> Exclusive experiences, behind-the-scenes access, founding member status</li>
+                        <li><strong>CTA:</strong> "Join the Founders" / "Become a Pioneer"</li>
+                    </ul>
+                </div>
+
+                <div class="info-box">
+                    <h4>Trailblazer</h4>
+                    <ul>
+                        <li><strong>Headline:</strong> "For the Truly Devoted"</li>
+                        <li><strong>Focus:</strong> Aspiration, exclusivity, recognition</li>
+                        <li><strong>CTA:</strong> "Earn Your Invitation" / "Discover Trailblazer Status"</li>
+                    </ul>
+                </div>
+
+                <h3>Content Calendar Templates</h3>
+
+                <h4>Monthly Content Pillars</h4>
+                <ol>
+                    <li><strong>Week 1:</strong> Member spotlight (feature a real member's journey)</li>
+                    <li><strong>Week 2:</strong> Scenic route feature (highlight a corridor, charging strategy)</li>
+                    <li><strong>Week 3:</strong> Partnership announcement or local business spotlight</li>
+                    <li><strong>Week 4:</strong> Behind-the-scenes (hub operations, team member, construction progress)</li>
+                </ol>
+
+                <h4>Seasonal Campaign Themes</h4>
+                <ul>
+                    <li><strong>Q1 (Jan-Mar):</strong> "New Year, New Routes" - Planning guides, goal setting</li>
+                    <li><strong>Q2 (Apr-Jun):</strong> "Spring Into Adventure" - Wildflowers, emerging scenic routes</li>
+                    <li><strong>Q3 (Jul-Sep):</strong> "Summer Road Rally" - Peak season, family trips, events</li>
+                    <li><strong>Q4 (Oct-Dec):</strong> "Fall Colors & Holiday Journeys" - Foliage routes, gift memberships</li>
+                </ul>
+
+                <h3>Email Campaign Templates</h3>
+
+                <h4>Welcome Series (5 emails)</h4>
+                <ol>
+                    <li><strong>Day 0:</strong> Welcome! Here's what you just unlocked (immediate benefits)</li>
+                    <li><strong>Day 3:</strong> How to make the most of your membership (tips, app tour)</li>
+                    <li><strong>Day 7:</strong> Meet our locations (showcase Basecamps and Waystations)</li>
+                    <li><strong>Day 14:</strong> Your first challenge (gamification, earn a credit)</li>
+                    <li><strong>Day 30:</strong> Upgrade offer (if Explorer, show Voyager benefits)</li>
+                </ol>
+
+                <h4>Monthly Member Newsletter</h4>
+                <ul>
+                    <li>New site openings and construction updates</li>
+                    <li>Member spotlight story</li>
+                    <li>Seasonal route recommendations</li>
+                    <li>Upcoming events (Pioneer Rallies, Trailblazer Expeditions)</li>
+                    <li>Partnership spotlight (new local discounts)</li>
+                    <li>Tier progression reminders ("You're 5 sessions from Voyager!")</li>
+                </ul>
+            </section>
+
+            <!-- Financial Projections -->
+            <section id="financials" class="section">
+                <h2>Financial Projections</h2>
+
+                <h3>Membership Revenue Model</h3>
+
+                <h4>Year 1 (10,000 charging sessions, 3 sites)</h4>
+                <ul>
+                    <li>Unique members: ~3,000</li>
+                    <li>Paid memberships: 1,050
+                        <ul>
+                            <li>840 Voyager (65% annual @ $99, 35% monthly @ $12): $70K</li>
+                            <li>210 Pioneer (75% annual @ $249, 25% monthly @ $25): $52K</li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="info-box success">
+                    <p><strong>Year 1 Membership Revenue: ~$122K</strong></p>
+                </div>
+
+                <h4>Year 3 (40,000 sessions, 8 sites)</h4>
+                <ul>
+                    <li>Unique members: ~12,000</li>
+                    <li>Paid memberships: 4,800
+                        <ul>
+                            <li>3,600 Voyager (70% annual, 30% monthly): $302K</li>
+                            <li>1,150 Pioneer (80% annual, 20% monthly): $287K</li>
+                            <li>50 Trailblazer (complimentary): $0</li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="info-box success">
+                    <p><strong>Year 3 Membership Revenue: ~$589K</strong></p>
+                </div>
+
+                <h4>Year 5 (120,000 sessions, 20+ sites)</h4>
+                <ul>
+                    <li>Unique members: ~35,000</li>
+                    <li>Paid memberships: 14,700
+                        <ul>
+                            <li>10,500 Voyager (75% annual, 25% monthly): $935K</li>
+                            <li>3,950 Pioneer (85% annual, 15% monthly): $984K</li>
+                            <li>250 Trailblazer (complimentary): $0</li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="info-box success">
+                    <p><strong>Year 5 Membership Revenue: ~$1.92M</strong> (~3% of total revenue)</p>
+                </div>
+
+                <h3>Business Impact Beyond Direct Revenue</h3>
+
+                <h4>Behavioral Multipliers</h4>
+                <ul>
+                    <li>Explorer members: 2x visit frequency vs. non-members</li>
+                    <li>Voyager members: 2.5x visit frequency</li>
+                    <li>Pioneer members: 4x visit frequency</li>
+                    <li>Trailblazer members: 7x visit frequency</li>
+                </ul>
+
+                <h4>Transaction Value Increases</h4>
+                <ul>
+                    <li>Members spend 35% more on retail/café per session</li>
+                    <li>Pioneer members have 55-min average dwell vs. 35-min baseline</li>
+                    <li>Higher attachment rate on food/beverage with loyalty discounts</li>
+                </ul>
+
+                <h4>Customer Acquisition Economics</h4>
+                <ul>
+                    <li>20% of new members from referrals by Year 3</li>
+                    <li>CAC for referred members: $0 (vs. $50-75 for paid acquisition)</li>
+                    <li>Lifetime value (LTV) for paid members: 5x+ vs. non-members</li>
+                </ul>
+
+                <h3>Program Costs</h3>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Cost Category</th>
+                            <th>Year 1</th>
+                            <th>Year 3</th>
+                            <th>Year 5</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Platform Software</td>
+                            <td>$50K</td>
+                            <td>$100K</td>
+                            <td>$150K</td>
+                        </tr>
+                        <tr>
+                            <td>Mobile App Dev/Maintenance</td>
+                            <td>$100K</td>
+                            <td>$150K</td>
+                            <td>$200K</td>
+                        </tr>
+                        <tr>
+                            <td>Member Communications</td>
+                            <td>$20K</td>
+                            <td>$50K</td>
+                            <td>$75K</td>
+                        </tr>
+                        <tr>
+                            <td>Events & Expeditions</td>
+                            <td>$25K</td>
+                            <td>$150K</td>
+                            <td>$300K</td>
+                        </tr>
+                        <tr>
+                            <td>Partnership Management</td>
+                            <td>$50K</td>
+                            <td>$100K</td>
+                            <td>$150K</td>
+                        </tr>
+                        <tr>
+                            <td>Staffing (incremental)</td>
+                            <td>$205K</td>
+                            <td>$300K</td>
+                            <td>$325K</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Total Program Costs</strong></td>
+                            <td><strong>$450K</strong></td>
+                            <td><strong>$750K</strong></td>
+                            <td><strong>$1.2M</strong></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Net Contribution</strong></td>
+                            <td><strong>-$328K</strong></td>
+                            <td><strong>-$161K</strong></td>
+                            <td><strong>+$720K</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="info-box">
+                    <p><em>Note: Does not include indirect revenue from increased session frequency, higher retail spend, and lower CAC—which likely make the program cash-positive from Year 1.</em></p>
+                </div>
+            </section>
+
+            <!-- Success Metrics -->
+            <section id="metrics" class="section">
+                <h2>Success Metrics</h2>
+
+                <h3>Membership Health Metrics</h3>
+
+                <h4>Enrollment Metrics</h4>
+                <ul>
+                    <li><strong>Enrollment rate:</strong> % of unique sessions that sign up (target: 55%)</li>
+                    <li><strong>Paid conversion rate:</strong> % of Explorers upgrading to Voyager/Pioneer (target: 35% by Year 3)</li>
+                    <li><strong>Tier distribution:</strong> Mix of Explorer/Voyager/Pioneer/Trailblazer over time</li>
+                    <li><strong>Earned vs. purchased:</strong> % of paid members who earned vs. bought their tier</li>
+                </ul>
+
+                <h4>Retention Metrics</h4>
+                <ul>
+                    <li><strong>Annual renewal rate:</strong> % of paid members renewing (target: 70%)</li>
+                    <li><strong>Churn rate:</strong> % of paid members downgrading or cancelling</li>
+                    <li><strong>Trailblazer retention:</strong> % maintaining minimum 30 sessions/year (target: 95%+)</li>
+                    <li><strong>Tier stability:</strong> % maintaining or progressing tiers year-over-year</li>
+                </ul>
+
+                <h4>Engagement Metrics</h4>
+                <ul>
+                    <li><strong>Member NPS:</strong> Net Promoter Score among members (target: 75+)</li>
+                    <li><strong>App engagement:</strong> Daily/weekly/monthly active users</li>
+                    <li><strong>Challenge participation:</strong> % completing quarterly challenges</li>
+                    <li><strong>Referral participation:</strong> % of members referring at least 1 friend</li>
+                    <li><strong>Event attendance:</strong> % of eligible members attending Pioneer Rallies, Summits</li>
+                </ul>
+
+                <h3>Behavioral Impact Metrics</h3>
+
+                <h4>Session Frequency</h4>
+                <ul>
+                    <li>Sessions per member per month (by tier)</li>
+                    <li>Member vs. non-member session frequency ratio</li>
+                    <li>Repeat visit rate: % returning within 30/60/90 days</li>
+                </ul>
+
+                <h4>Transaction Metrics</h4>
+                <ul>
+                    <li>Average retail spend per session (members vs. non-members)</li>
+                    <li>Attachment rate: % of charging sessions including retail purchase</li>
+                    <li>Basket size by tier (Explorer vs. Voyager vs. Pioneer)</li>
+                    <li>Dwell time by tier (longer dwell = more retail opportunity)</li>
+                </ul>
+
+                <h4>Acquisition Metrics</h4>
+                <ul>
+                    <li>% of new members from referrals</li>
+                    <li>Cost per acquisition (CPA) by channel</li>
+                    <li>Referral conversion rate: % of referred leads who sign up</li>
+                    <li>Time to first paid tier (how long do Explorers stay free?)</li>
+                </ul>
+
+                <h3>Financial Performance Metrics</h3>
+
+                <h4>Revenue Metrics</h4>
+                <ul>
+                    <li>Monthly recurring revenue (MRR) from memberships</li>
+                    <li>Annual recurring revenue (ARR) from memberships</li>
+                    <li>Revenue per member (total: charging + retail + membership fee)</li>
+                    <li>Membership revenue as % of total company revenue</li>
+                </ul>
+
+                <h4>Profitability Metrics</h4>
+                <ul>
+                    <li>Contribution margin by tier (revenue - variable costs)</li>
+                    <li>Customer lifetime value (LTV) by tier (5-year projection)</li>
+                    <li>LTV:CAC ratio (target: 3:1 or higher)</li>
+                    <li>Payback period: Time to recover acquisition cost (target: <12 months)</li>
+                </ul>
+            </section>
+
+            <!-- Operations -->
+            <section id="operations" class="section">
+                <h2>Operational Guidelines</h2>
+
+                <h3>Staff Training Requirements</h3>
+
+                <h4>All Staff Training</h4>
+                <ul>
+                    <li>Understand all 4 membership tiers and benefits</li>
+                    <li>Recognize tier badges on chargers and in app</li>
+                    <li>Know how to handle member inquiries</li>
+                    <li>Understand referral program mechanics</li>
+                </ul>
+
+                <h4>Basecamp Journey Guides Training</h4>
+                <ul>
+                    <li>Greet members by name when possible</li>
+                    <li>Recognize Pioneer/Trailblazer badges visually</li>
+                    <li>Know current tier-specific benefits:
+                        <ul>
+                            <li>Explorer: 10% café discount</li>
+                            <li>Voyager: 20% café discount + free coffee upgrade</li>
+                            <li>Pioneer: 30% café discount + free food item with beverage</li>
+                            <li>Trailblazer: 40% café discount + monthly complimentary meal</li>
+                        </ul>
+                    </li>
+                    <li>Handle birthday month benefits</li>
+                    <li>Invite members to events</li>
+                    <li>Facilitate behind-the-scenes tours for Pioneers/Trailblazers</li>
+                </ul>
+
+                <h3>Member Recognition Protocols</h3>
+
+                <h4>At Chargers (All Locations)</h4>
+                <ul>
+                    <li>Display member name: "Welcome back, [Name]!"</li>
+                    <li>Show tier badge: 🗺️ Explorer | ⛰️ Voyager | 🏔️ Pioneer | 🏕️ Trailblazer</li>
+                    <li>Display discount being applied: "10% member discount applied"</li>
+                    <li>Show progress to next tier (if within 5 sessions)</li>
+                    <li>Birthday recognition: "Happy birthday, [Name]!"</li>
+                </ul>
+
+                <h4>At Basecamps (Staffed Locations)</h4>
+                <ul>
+                    <li>Staff tablet shows incoming member (name, tier, session count)</li>
+                    <li>Verbal greeting: "Welcome back, [Name]!"</li>
+                    <li>Proactive benefit reminders</li>
+                    <li>Celebrate milestones: "Congrats on your 50th session!"</li>
+                </ul>
+
+                <h3>Event Planning Guidelines</h3>
+
+                <h4>Pioneer Summit (Annual)</h4>
+                <ul>
+                    <li><strong>Timing:</strong> Fall (September/October)</li>
+                    <li><strong>Location:</strong> Flagship Basecamp</li>
+                    <li><strong>Duration:</strong> Half-day or full weekend</li>
+                    <li><strong>Capacity:</strong> 100-200 Pioneers</li>
+                    <li><strong>Budget:</strong> $25K</li>
+                    <li><strong>Agenda:</strong> Network update, site preview, hub tour, guest speaker, networking</li>
+                </ul>
+
+                <h4>Pioneer Road Rally (Quarterly)</h4>
+                <ul>
+                    <li><strong>Format:</strong> Organized group drive along scenic corridor</li>
+                    <li><strong>Capacity:</strong> 20-30 vehicles</li>
+                    <li><strong>Budget:</strong> $5K per event</li>
+                    <li><strong>Agenda:</strong> Morning meet-up, coordinated drive, end at Basecamp for dinner</li>
+                </ul>
+
+                <h4>Trailblazer Expedition (Annual)</h4>
+                <ul>
+                    <li><strong>Timing:</strong> Spring or Fall</li>
+                    <li><strong>Duration:</strong> 3-4 days</li>
+                    <li><strong>Capacity:</strong> 25-50 Trailblazers</li>
+                    <li><strong>Budget:</strong> $5-10K per Trailblazer (all-expenses-paid)</li>
+                    <li><strong>Agenda:</strong> Multi-day road trip, site visits, exclusive experiences, executive dinners</li>
+                </ul>
+            </section>
+
+            <!-- Partnerships -->
+            <section id="partnerships" class="section">
+                <h2>Partnership Framework</h2>
+
+                <h3>Partnership Categories</h3>
+
+                <h4>Tourism Boards & Visitor Bureaus</h4>
+                <div class="info-box">
+                    <p><strong>Value Exchange:</strong></p>
+                    <ul>
+                        <li><strong>Rangeway:</strong> Featured in regional travel guides, co-branded route maps</li>
+                        <li><strong>Tourism Board:</strong> Member discounts, digital advertising space at locations</li>
+                    </ul>
+                    <p><strong>Target Partners:</strong> Visit California, Travel Oregon, Washington Tourism, Regional DMOs</p>
+                </div>
+
+                <h4>Hospitality Partners (Hotels, Resorts)</h4>
+                <div class="info-box">
+                    <p><strong>Value Exchange:</strong></p>
+                    <ul>
+                        <li><strong>Rangeway:</strong> "Charge here, stay there" package promotions</li>
+                        <li><strong>Hotel:</strong> Member discount on rooms, reciprocal loyalty benefits</li>
+                    </ul>
+                    <p><strong>Target Partners:</strong> Boutique hotels, eco-lodges, Airbnb Luxe properties</p>
+                </div>
+
+                <h4>Outdoor & Adventure Brands</h4>
+                <div class="info-box">
+                    <p><strong>Potential Target Partners:</strong></p>
+                    <ul>
+                        <li><strong>Patagonia:</strong> Voyager+ members get Worn Wear event access</li>
+                        <li><strong>YETI:</strong> Pioneer members get exclusive co-branded colorways</li>
+                        <li><strong>REI:</strong> Co-op members get bonus Pathfinder points</li>
+                        <li><strong>The North Face:</strong> Expedition gear for Trailblazer members</li>
+                        <li><strong>Rivian:</strong> Cross-promotion, co-hosted events</li>
+                    </ul>
+                </div>
+
+                <h3>Partnership Tiers</h3>
+                <ul>
+                    <li><strong>Basic:</strong> Logo on rangeway.app website, social media mention</li>
+                    <li><strong>Standard:</strong> Above + digital screen presence + member discount</li>
+                    <li><strong>Premium:</strong> Above + event sponsorship + exclusive co-branded experiences</li>
+                </ul>
+            </section>
+
+            <!-- Member Journeys -->
+            <section id="journeys" class="section">
+                <h2>Member Journey Maps</h2>
+
+                <h3>Explorer Journey</h3>
+                
+                <h4>Discovery</h4>
+                <ul>
+                    <li>Sees Rangeway charging station, scans QR code</li>
+                    <li>Downloads app, signs up for Explorer (free)</li>
+                    <li>Immediate welcome email with benefits</li>
+                </ul>
+
+                <h4>First Charge</h4>
+                <ul>
+                    <li>Charger greets by name: "Welcome, [Name]!"</li>
+                    <li>Sees 5% discount applied automatically</li>
+                    <li>Charges while grabbing coffee at Basecamp (10% discount)</li>
+                    <li>Leaves satisfied, bookmark location in app</li>
+                </ul>
+
+                <h4>Engagement</h4>
+                <ul>
+                    <li>Week 2: Email with "How to get the most from your membership"</li>
+                    <li>Week 4: Push notification: "5 sessions away from Voyager!"</li>
+                    <li>Month 2: Birthday month - free coffee notification</li>
+                    <li>Month 3: Completes 20 sessions → auto-upgrade to Voyager</li>
+                </ul>
+
+                <hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--light-gray);">
+
+                <h3>Voyager Journey</h3>
+
+                <h4>Upgrade</h4>
+                <ul>
+                    <li>Decides to pay for Voyager ($12/mo or $99/year)</li>
+                    <li>Immediate welcome package (digital badge, app tour)</li>
+                    <li>First monthly Voyager Perk arrives in inbox</li>
+                </ul>
+
+                <h4>Activation</h4>
+                <ul>
+                    <li>Next charge: Sees 10% discount (vs. 5% as Explorer)</li>
+                    <li>Orders premium latte - gets free upgrade</li>
+                    <li>Journey Guide recognizes: "Welcome, Voyager!"</li>
+                    <li>Sees challenge in app: "Charge 5x this quarter, earn $25 credit"</li>
+                </ul>
+
+                <h4>Progression</h4>
+                <ul>
+                    <li>Month 8: Email: "You're halfway to Pioneer status!"</li>
+                    <li>Month 14: Hits 50 sessions → eligible for Pioneer upgrade</li>
+                </ul>
+
+                <hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--light-gray);">
+
+                <h3>Pioneer Journey</h3>
+
+                <h4>Upgrade Decision</h4>
+                <ul>
+                    <li>Voyager member for 1+ years, charges frequently</li>
+                    <li>Sees Founding Member offer: $199/year</li>
+                    <li>Decides to upgrade for Pioneer Summit + $100 credit</li>
+                </ul>
+
+                <h4>Deep Engagement</h4>
+                <ul>
+                    <li>Charges 2-3x per week, gets 15% discount</li>
+                    <li>Attends Pioneer Summit - meets CEO, sees new site plans</li>
+                    <li>Joins Advisory Panel - provides feedback</li>
+                    <li>Participates in Pioneer Road Rally - makes new friends</li>
+                </ul>
+
+                <h4>Advocacy</h4>
+                <ul>
+                    <li>Becomes regional ambassador</li>
+                    <li>Posts frequently about Rangeway experiences</li>
+                    <li>Refers 10+ friends</li>
+                    <li>Year 3: Charging 100+ times per year → Trailblazer invitation</li>
+                </ul>
+
+                <hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--light-gray);">
+
+                <h3>Trailblazer Journey</h3>
+
+                <h4>Invitation</h4>
+                <ul>
+                    <li>Email from CEO: "You're invited to join Trailblazer status"</li>
+                    <li>Personal note recognizing contributions</li>
+                    <li>Welcome package: Limited-edition merchandise</li>
+                </ul>
+
+                <h4>Elite Engagement</h4>
+                <ul>
+                    <li>Charges with 20% discount + $500 annual credit</li>
+                    <li>Complimentary meal each month at Basecamps</li>
+                    <li>Attends Trailblazer Expedition (all-expenses-paid)</li>
+                    <li>Quarterly Executive Advisory Board calls with CEO</li>
+                </ul>
+
+                <h4>Legacy Building</h4>
+                <ul>
+                    <li>Name on permanent plaque at flagship Basecamp</li>
+                    <li>Featured in annual coffee table book</li>
+                    <li>Represents Rangeway at national conferences</li>
+                    <li>Provides strategic input on expansion</li>
+                    <li>Mentors new Pioneer members</li>
+                </ul>
+            </section>
+
+            <!-- Footer -->
+            <footer style="margin-top: 4rem; padding: 2rem 0; border-top: 2px solid var(--light-gray); text-align: center; color: var(--fog-gray);">
+                <p><strong>Document Version:</strong> 1.0 | <strong>Last Updated:</strong> October 2025</p>
+                <p><strong>Owner:</strong> Zak Winnick, CEO | <strong>Contact:</strong> hello@rangeway.energy</p>
+                <p style="margin-top: 1rem; font-style: italic;">This playbook is a living document. Updates and refinements should be made as we learn from real-world deployment and member feedback.</p>
+            </footer>
+        </main>
+    </div>
+
+    <button class="mobile-menu-toggle" id="menuToggle" aria-label="Toggle Menu">☰</button>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetSection = document.getElementById(targetId);
+                
+                if (targetSection) {
+                    targetSection.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (window.innerWidth <= 1024) {
+                        sidebar.classList.remove('active');
+                    }
+                }
+            });
+        });
+
+        // Active section highlighting
+        const sections = document.querySelectorAll('.section');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        function updateActiveLink() {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 150)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', updateActiveLink);
+        updateActiveLink(); // Initial call
+
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const sidebar = document.getElementById('sidebar');
+
+        menuToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+        });
+
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', (e) => {
+            if (window.innerWidth <= 1024 && 
+                !sidebar.contains(e.target) && 
+                !menuToggle.contains(e.target) &&
+                sidebar.classList.contains('active')) {
+                sidebar.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
