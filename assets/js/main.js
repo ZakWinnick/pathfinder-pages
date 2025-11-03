@@ -173,13 +173,6 @@ const tierData = {
         discount: 15,
         monthlyFee: 25,
         annualCredit: 100
-    },
-    trailblazer: {
-        name: 'Trailblazer',
-        price: 'Invite Only',
-        discount: 20,
-        monthlyFee: 0,
-        annualCredit: 500
     }
 };
 
