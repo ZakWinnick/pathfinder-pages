@@ -1329,8 +1329,29 @@ footer {
         display: none;
     }
 
+    .nav-actions {
+        display: none;
+    }
+
     .mobile-menu-toggle {
         display: flex;
+    }
+
+    .logo a span {
+        font-size: 16px !important;
+    }
+
+    .logo a svg {
+        width: 32px !important;
+        height: 32px !important;
+    }
+
+    .navbar .container {
+        padding: 0 1rem;
+    }
+
+    .nav-wrapper {
+        gap: 1rem;
     }
 
     .footer-grid {
