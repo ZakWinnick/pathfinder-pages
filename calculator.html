@@ -1,0 +1,55 @@
+---
+layout: default
+title: Savings Calculator | Pathfinder Rewards
+description: Calculate how much you could save with Pathfinder Rewards based on your charging habits.
+keywords: savings calculator, charging savings, membership calculator, EV charging cost
+stylesheet: main
+script: main
+---
+
+<!-- Benefits Calculator Section -->
+<section class="calculator-section" id="calculator">
+    <div class="section-header">
+        <h2>Calculate Your Savings</h2>
+        <p>See how much you could save with Pathfinder Rewards based on your charging habits.</p>
+    </div>
+    <div class="calculator-container">
+        <div class="calculator-input-card">
+            <h3>Your Charging Habits</h3>
+            <div class="slider-container">
+                <label for="charging-sessions">I charge <span id="session-count">10</span> times per month</label>
+                <input type="range" id="charging-sessions" min="0" max="20" value="10" class="slider">
+                <div class="slider-labels">
+                    <span>0</span>
+                    <span>5</span>
+                    <span>10</span>
+                    <span>15</span>
+                    <span>20</span>
+                </div>
+            </div>
+            <p class="calculator-note">Based on $40 average charge</p>
+        </div>
+        <div class="calculator-results" id="calculator-results">
+            <!-- Results will be populated by JavaScript -->
+        </div>
+    </div>
+</section>
+
+<!-- Quick Tier Overview -->
+<section class="tiers">
+    <div class="section-header">
+        <h2>Which Tier is Right for You?</h2>
+        <p>Compare all membership tiers and benefits.</p>
+    </div>
+    <div style="text-align: center; margin: 2rem 0;">
+        <a href="/tiers.html" class="btn-primary btn-large">View All Tiers</a>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section">
+    <h2>Ready to Start Your Journey?</h2>
+    <p>Join thousands of drivers exploring America's scenic highways with Rangeway. Choose your tier and start earning rewards today.</p>
+    <a href="https://fieldnotes.rangeway.energy" class="btn-primary" target="_blank" rel="noopener noreferrer">Sign Up for Updates</a>
+    <p class="info-text">Pathfinder Rewards launches with our first Basecamp in 2026.<br>Sign up now for early access and Founding Pioneer pricing.</p>
+</section>

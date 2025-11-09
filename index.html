@@ -14,7 +14,7 @@ script: main
         <h1>Explore More.<br><span class="highlight">Earn More.</span></h1>
         <p>Join the loyalty program built for America's scenic highways. Get rewarded for every journey, every charge, every adventure.</p>
         <div class="hero-buttons">
-            <a href="#tiers" class="btn-primary">View Membership Tiers</a>
+            <a href="/tiers.html" class="btn-primary">View Membership Tiers</a>
             <a href="https://rangeway.energy" class="btn-secondary">Learn About Rangeway</a>
         </div>
     </div>
@@ -42,386 +42,68 @@ script: main
     </div>
 </section>
 
-<!-- Benefits Calculator Section -->
-<section class="calculator-section" id="calculator">
+<!-- Quick Overview Section -->
+<section class="benefits">
     <div class="section-header">
-        <h2>Calculate Your Savings</h2>
-        <p>See how much you could save with Pathfinder Rewards based on your charging habits.</p>
+        <h2>More Than Just a Loyalty Program</h2>
+        <p>From exclusive discounts to unforgettable experiences across America's scenic highways.</p>
     </div>
-    <div class="calculator-container">
-        <div class="calculator-input-card">
-            <h3>Your Charging Habits</h3>
-            <div class="slider-container">
-                <label for="charging-sessions">I charge <span id="session-count">10</span> times per month</label>
-                <input type="range" id="charging-sessions" min="0" max="20" value="10" class="slider">
-                <div class="slider-labels">
-                    <span>0</span>
-                    <span>5</span>
-                    <span>10</span>
-                    <span>15</span>
-                    <span>20</span>
-                </div>
-            </div>
-            <p class="calculator-note">Based on $40 average charge</p>
-        </div>
-        <div class="calculator-results" id="calculator-results">
-            <!-- Results will be populated by JavaScript -->
-        </div>
-    </div>
-</section>
-
-<!-- Tiers Section -->
-<section class="tiers" id="tiers">
-    <div class="section-header">
-        <h2>Choose Your Journey</h2>
-        <p>From free Explorer membership to invite-only Trailblazer status, find the tier that matches your adventure style.</p>
-    </div>
-    <div class="tier-view-toggle">
-        <button class="view-toggle-btn active" data-view="grid">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="3" y="3" width="7" height="7"></rect>
-                <rect x="14" y="3" width="7" height="7"></rect>
-                <rect x="3" y="14" width="7" height="7"></rect>
-                <rect x="14" y="14" width="7" height="7"></rect>
-            </svg>
-            Grid View
-        </button>
-        <button class="view-toggle-btn" data-view="table">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <line x1="3" y1="12" x2="21" y2="12"></line>
-                <line x1="3" y1="6" x2="21" y2="6"></line>
-                <line x1="3" y1="18" x2="21" y2="18"></line>
-                <line x1="8" y1="6" x2="8" y2="18"></line>
-            </svg>
-            Table View
-        </button>
-    </div>
-    <div class="tiers-grid">
-        <!-- Explorer Tier -->
-        <div class="tier-card">
-            <div class="tier-icon">🗺️</div>
-            <div class="tier-name">Explorer</div>
-            <div class="tier-tagline">Your journey starts here</div>
-            <div class="tier-price">Free</div>
-            <div class="tier-price-detail">Always free, forever</div>
-            <ul class="tier-features">
-                <li>5% charging discount</li>
-                <li>Birthday month free coffee</li>
-                <li>Early access to new sites</li>
-                <li>Member newsletter</li>
-                <li>Digital journey tracking</li>
-                <li>Name recognition on screens</li>
-            </ul>
-            <a href="#join" class="tier-cta">Join Free</a>
-        </div>
-
-        <!-- Voyager Tier -->
-        <div class="tier-card featured">
-            <div class="tier-icon">⛰️</div>
-            <div class="tier-name">Voyager</div>
-            <div class="tier-tagline">For the regular road warrior</div>
-            <div class="tier-price">$12<span style="font-size: 1.2rem;">/mo</span></div>
-            <div class="tier-price-detail">or $99/year (save $45)</div>
-            <ul class="tier-features">
-                <li>10% charging discount</li>
-                <li>2 free sessions per year</li>
-                <li>20% off Basecamp café & retail</li>
-                <li>Free coffee upgrades</li>
-                <li>Monthly Voyager Perks</li>
-                <li>Real-time charger availability</li>
-                <li>Auto-upgrade to Pioneer at 50 sessions</li>
-            </ul>
-            <a href="#join" class="tier-cta">Start Your Journey</a>
-        </div>
-
-        <!-- Pioneer Tier -->
-        <div class="tier-card">
-            <div class="tier-icon">🏔️</div>
-            <div class="tier-name">Pioneer</div>
-            <div class="tier-tagline">For founding members & super fans</div>
-            <div class="tier-price">$25<span style="font-size: 1.2rem;">/mo</span></div>
-            <div class="tier-price-detail">or $249/year (save $51)<br><em style="color: var(--sunset-coral);">First 500: $199/year for life</em></div>
-            <ul class="tier-features">
-                <li>15% charging discount</li>
-                <li>$100 annual charging credit</li>
-                <li>30% off Basecamp café & retail</li>
-                <li>Free food with any beverage</li>
-                <li>Unlimited free charging on birthday</li>
-                <li>Pioneer Summit invitations</li>
-                <li>Behind-the-scenes tours</li>
-                <li>Pioneer merchandise package</li>
-            </ul>
-            <a href="#join" class="tier-cta">Become a Pioneer</a>
-        </div>
-
-        <!-- Trailblazer Tier -->
-        <div class="tier-card invite-only">
-            <div class="tier-icon">🏕️</div>
-            <div class="tier-name">Trailblazer</div>
-            <div class="tier-tagline">Invite-only elite tier</div>
-            <div class="tier-price">Invitation Only</div>
-            <div class="tier-price-detail">Maximum 250 members nationwide</div>
-            <ul class="tier-features">
-                <li>20% charging discount</li>
-                <li>$500 annual charging credit</li>
-                <li>40% off Basecamp café & retail</li>
-                <li>Complimentary monthly meal</li>
-                <li>Annual all-expenses-paid expedition</li>
-                <li>Executive Advisory Board access</li>
-                <li>Dedicated concierge support</li>
-                <li>Lifetime status (30 sessions/year minimum)</li>
-            </ul>
-            <a href="#join" class="tier-cta">Learn About Invitations</a>
-        </div>
-    </div>
-    <div class="tiers-table" style="display: none;">
-        <table class="comparison-table">
-            <thead>
-                <tr>
-                    <th class="feature-column">Feature</th>
-                    <th>Explorer</th>
-                    <th>Voyager</th>
-                    <th>Pioneer</th>
-                    <th>Trailblazer</th>
-                </tr>
-                <tr class="price-row">
-                    <td class="feature-column">Price</td>
-                    <td>Free</td>
-                    <td>$12/mo</td>
-                    <td>$25/mo</td>
-                    <td>Invite Only</td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="feature-column">Charging Discount</td>
-                    <td>5%</td>
-                    <td>10%</td>
-                    <td>15%</td>
-                    <td>20%</td>
-                </tr>
-                <tr>
-                    <td class="feature-column">Annual Charging Credit</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>$100</td>
-                    <td>$500</td>
-                </tr>
-                <tr>
-                    <td class="feature-column">Free Sessions/Year</td>
-                    <td>-</td>
-                    <td>2</td>
-                    <td>-</td>
-                    <td>-</td>
-                </tr>
-                <tr>
-                    <td class="feature-column">Basecamp Cafe & Retail Discount</td>
-                    <td>-</td>
-                    <td>20%</td>
-                    <td>30%</td>
-                    <td>40%</td>
-                </tr>
-                <tr>
-                    <td class="feature-column">Birthday Month Free Coffee</td>
-                    <td><span class="checkmark">✓</span></td>
-                    <td><span class="checkmark">✓</span></td>
-                    <td><span class="checkmark">✓</span></td>
-                    <td><span class="checkmark">✓</span></td>
-                </tr>
-                <tr>
-                    <td class="feature-column">Free Coffee Upgrades</td>
-                    <td>-</td>
-                    <td><span class="checkmark">✓</span></td>
-                    <td><span class="checkmark">✓</span></td>
-                    <td><span class="checkmark">✓</span></td>
-                </tr>
-                <tr>
-                    <td class="feature-column">Free Food with Beverage</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td><span class="checkmark">✓</span></td>
-                    <td><span class="checkmark">✓</span></td>
-                </tr>
-                <tr>
-                    <td class="feature-column">Complimentary Monthly Meal</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td><span class="checkmark">✓</span></td>
-                </tr>
-                <tr>
-                    <td class="feature-column">Birthday Benefits</td>
-                    <td>Free coffee</td>
-                    <td>Free coffee</td>
-                    <td>Unlimited free charging</td>
-                    <td>Unlimited free charging</td>
-                </tr>
-                <tr>
-                    <td class="feature-column">Early Access to New Sites</td>
-                    <td><span class="checkmark">✓</span></td>
-                    <td><span class="checkmark">✓</span></td>
-                    <td><span class="checkmark">✓</span></td>
-                    <td><span class="checkmark">✓</span></td>
-                </tr>
-                <tr>
-                    <td class="feature-column">Member Newsletter</td>
-                    <td><span class="checkmark">✓</span></td>
-                    <td><span class="checkmark">✓</span></td>
-                    <td><span class="checkmark">✓</span></td>
-                    <td><span class="checkmark">✓</span></td>
-                </tr>
-                <tr>
-                    <td class="feature-column">Digital Journey Tracking</td>
-                    <td><span class="checkmark">✓</span></td>
-                    <td><span class="checkmark">✓</span></td>
-                    <td><span class="checkmark">✓</span></td>
-                    <td><span class="checkmark">✓</span></td>
-                </tr>
-                <tr>
-                    <td class="feature-column">Name Recognition on Screens</td>
-                    <td><span class="checkmark">✓</span></td>
-                    <td><span class="checkmark">✓</span></td>
-                    <td><span class="checkmark">✓</span></td>
-                    <td><span class="checkmark">✓</span></td>
-                </tr>
-                <tr>
-                    <td class="feature-column">Real-time Charger Availability</td>
-                    <td>-</td>
-                    <td><span class="checkmark">✓</span></td>
-                    <td><span class="checkmark">✓</span></td>
-                    <td><span class="checkmark">✓</span></td>
-                </tr>
-                <tr>
-                    <td class="feature-column">Monthly Perks</td>
-                    <td>-</td>
-                    <td><span class="checkmark">✓</span></td>
-                    <td><span class="checkmark">✓</span></td>
-                    <td><span class="checkmark">✓</span></td>
-                </tr>
-                <tr>
-                    <td class="feature-column">Pioneer Summit Invitations</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td><span class="checkmark">✓</span></td>
-                    <td><span class="checkmark">✓</span></td>
-                </tr>
-                <tr>
-                    <td class="feature-column">Behind-the-Scenes Tours</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td><span class="checkmark">✓</span></td>
-                    <td><span class="checkmark">✓</span></td>
-                </tr>
-                <tr>
-                    <td class="feature-column">Pioneer Merchandise Package</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td><span class="checkmark">✓</span></td>
-                    <td>-</td>
-                </tr>
-                <tr>
-                    <td class="feature-column">Annual All-Expenses-Paid Expedition</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td><span class="checkmark">✓</span></td>
-                </tr>
-                <tr>
-                    <td class="feature-column">Executive Advisory Board Access</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td><span class="checkmark">✓</span></td>
-                </tr>
-                <tr>
-                    <td class="feature-column">Dedicated Concierge Support</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td><span class="checkmark">✓</span></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</section>
-
-<!-- Benefits Section -->
-<section class="benefits" id="benefits">
-    <div class="section-header">
-        <h2>More Than Just Discounts</h2>
-        <p>Pathfinder Rewards is about experiences, community, and making every journey memorable.</p>
-    </div>
-
-    <!-- Interior Lounge Hero -->
-    <div class="interior-hero">
-        <div class="interior-hero-content">
-            <h3>Premium Comfort at Every Stop</h3>
-            <p>Climate-controlled lounges, comfortable seating, and work-friendly spaces at every Basecamp location</p>
-        </div>
-    </div>
-
     <div class="benefits-grid">
         <div class="benefit-card">
+            <div class="benefit-icon">🗺️</div>
+            <h3>Four Membership Tiers</h3>
+            <p>From free Explorer to invite-only Trailblazer, choose the tier that matches your travel style.</p>
+            <a href="/tiers.html" class="btn-primary" style="margin-top: 1rem;">Explore Tiers</a>
+        </div>
+        <div class="benefit-card">
             <div class="benefit-icon">⚡</div>
-            <h3>Instant Recognition</h3>
-            <p>Every charger greets you by name. Our staff knows your tier. You're not a transaction—you're a valued member.</p>
+            <h3>Premium Benefits</h3>
+            <p>Instant recognition, exclusive events, growing perks, and experiences that go beyond discounts.</p>
+            <a href="/benefits.html" class="btn-primary" style="margin-top: 1rem;">View Benefits</a>
         </div>
         <div class="benefit-card">
-            <div class="benefit-icon">🎯</div>
-            <h3>Exclusive Events</h3>
-            <p>Pioneer Road Rallies, Trailblazer Expeditions, Basecamp grand openings—members get access to experiences money can't buy.</p>
-        </div>
-        <div class="benefit-card">
-            <div class="benefit-icon">🌟</div>
-            <h3>Growing Benefits</h3>
-            <p>As our network expands, your benefits grow. New partnerships, new locations, new perks—all included in your membership.</p>
-        </div>
-        <div class="benefit-card">
-            <div class="benefit-icon">💬</div>
-            <h3>Voice That Matters</h3>
-            <p>Advisory panels, site selection voting, product testing—help shape the future of Rangeway through your membership tier.</p>
-        </div>
-        <div class="benefit-card">
-            <div class="benefit-icon">🤝</div>
-            <h3>Local Partnerships</h3>
-            <p>Hotels, attractions, adventure experiences—your Pathfinder membership unlocks discounts across America's scenic corridors.</p>
-        </div>
-        <div class="benefit-card">
-            <div class="benefit-icon">📱</div>
-            <h3>Seamless Experience</h3>
-            <p>Plug & Charge automatically applies your discounts. Track your journey, earn credits, access benefits—all in one app.</p>
+            <div class="benefit-icon">💰</div>
+            <h3>Calculate Savings</h3>
+            <p>See exactly how much you could save based on your charging habits and membership tier.</p>
+            <a href="/calculator.html" class="btn-primary" style="margin-top: 1rem;">Try Calculator</a>
         </div>
     </div>
 </section>
 
-<!-- Location Diversity Section -->
-<section class="locations" id="locations">
+<!-- Mini Tier Preview -->
+<section class="tiers">
     <div class="section-header">
-        <h2>From Coast to Mountains</h2>
-        <p>Experience the diversity of America's scenic highways. Our charging network spans desert corridors, mountain passes, and coastal routes.</p>
+        <h2>Find Your Perfect Tier</h2>
+        <p>Start free or unlock more with premium memberships.</p>
     </div>
-    <div class="locations-grid">
-        <div class="location-card">
-            <div class="location-image-wrapper">
-                <img src="images/waystation-exterior2-jt.jpg" alt="Desert charging station surrounded by Joshua Trees" class="location-image">
-            </div>
-            <h3>Desert Corridors</h3>
-            <p>From the Mojave to the Sonoran, our stations dot the vast desert landscapes where wide-open roads meet endless horizons. Experience the stark beauty of America's arid regions while staying charged and comfortable.</p>
+    <div class="tiers-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); max-width: 1200px; margin: 0 auto;">
+        <div class="tier-card" style="padding: 2rem 1.5rem;">
+            <div class="tier-icon" style="font-size: 2rem;">🗺️</div>
+            <div class="tier-name" style="font-size: 1.5rem;">Explorer</div>
+            <div class="tier-price">Free</div>
+            <p style="color: var(--coastal-cream); margin: 1rem 0;">5% discount, birthday perks, early access to new sites</p>
         </div>
-        <div class="location-card">
-            <div class="location-image-wrapper">
-                <img src="images/waystation-exterior1-shasta.jpg" alt="Mountain charging station with Mt. Shasta in background" class="location-image">
-            </div>
-            <h3>Mountain Passes</h3>
-            <p>Navigate alpine highways with confidence. Our high-elevation stations provide reliable charging through the Cascades, Sierra Nevada, and beyond. Adventure awaits where the mountains meet the sky.</p>
+        <div class="tier-card featured" style="padding: 2rem 1.5rem;">
+            <div class="tier-icon" style="font-size: 2rem;">⛰️</div>
+            <div class="tier-name" style="font-size: 1.5rem;">Voyager</div>
+            <div class="tier-price">$12<span style="font-size: 1rem;">/mo</span></div>
+            <p style="color: var(--coastal-cream); margin: 1rem 0;">10% discount, free sessions, café perks, real-time updates</p>
         </div>
-        <div class="location-card">
-            <div class="location-image-wrapper">
-                <img src="images/waystation-exterior4-pch.jpg" alt="Coastal charging station along the Pacific Coast Highway" class="location-image">
-            </div>
-            <h3>Coastal Highways</h3>
-            <p>Cruise the legendary Pacific Coast Highway and beyond with ocean views and sea breezes. Our coastal stations offer the perfect stop to recharge while taking in dramatic cliffside vistas and endless blue horizons.</p>
+        <div class="tier-card" style="padding: 2rem 1.5rem;">
+            <div class="tier-icon" style="font-size: 2rem;">🏔️</div>
+            <div class="tier-name" style="font-size: 1.5rem;">Pioneer</div>
+            <div class="tier-price">$25<span style="font-size: 1rem;">/mo</span></div>
+            <p style="color: var(--coastal-cream); margin: 1rem 0;">15% discount, $100 credit, exclusive events, merchandise</p>
         </div>
+        <div class="tier-card invite-only" style="padding: 2rem 1.5rem;">
+            <div class="tier-icon" style="font-size: 2rem;">🏕️</div>
+            <div class="tier-name" style="font-size: 1.5rem;">Trailblazer</div>
+            <div class="tier-price" style="font-size: 1rem;">Invite Only</div>
+            <p style="color: var(--coastal-cream); margin: 1rem 0;">20% discount, $500 credit, concierge, expeditions</p>
+        </div>
+    </div>
+    <div style="text-align: center; margin: 3rem 0;">
+        <a href="/tiers.html" class="btn-primary btn-large">Compare All Tiers</a>
     </div>
 </section>
 
