@@ -125,4 +125,4 @@ For questions about Pathfinder Rewards:
 
 ## License
 
-© 2025 Rangeway. All rights reserved.
+© 2025 Rangeway Energy, Inc. All rights reserved.
