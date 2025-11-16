@@ -1,6 +1,6 @@
-# Pathfinder Rewards - Rangeway Energy
+# Pathfinder Rewards - Rangeway
 
-Jekyll-powered site for Pathfinder Rewards, Rangeway Energy's loyalty program.
+Jekyll-powered site for Pathfinder Rewards, Rangeway's loyalty program.
 
 ## Site Structure
 
@@ -125,4 +125,4 @@ For questions about Pathfinder Rewards:
 
 ## License
 
-© 2025 Rangeway Energy. All rights reserved.
+© 2025 Rangeway. All rights reserved.

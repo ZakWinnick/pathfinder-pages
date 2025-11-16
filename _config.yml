@@ -1,15 +1,15 @@
-# Pathfinder Rewards - Rangeway Energy
+# Pathfinder Rewards - Rangeway
 # Jekyll configuration for GitHub Pages
 
 # Site settings
-title: Pathfinder Rewards | Rangeway Energy
-description: "Earn benefits while exploring America's scenic highways. Join Rangeway Energy's loyalty program for exclusive discounts, experiences, and community."
+title: Pathfinder Rewards | Rangeway
+description: "Earn benefits while exploring America's scenic highways. Join Rangeway's loyalty program for exclusive discounts, experiences, and community."
 url: "https://pathfinder.rangeway.energy"
 baseurl: ""
 
 # Organization info
 organization:
-  name: Rangeway Energy
+  name: Rangeway
   tagline: "Pathfinder Rewards - Explore More. Earn More."
   main_site: "https://rangeway.energy"
   newsroom_site: "https://newsroom.rangeway.energy"
@@ -32,12 +32,12 @@ social:
 # Page metadata
 pages:
   index:
-    title: "Pathfinder Rewards | Rangeway Energy"
-    description: "Earn benefits while exploring America's scenic highways. Join Rangeway Energy's loyalty program for exclusive discounts, experiences, and community."
+    title: "Pathfinder Rewards | Rangeway"
+    description: "Earn benefits while exploring America's scenic highways. Join Rangeway's loyalty program for exclusive discounts, experiences, and community."
     keywords: "Pathfinder Rewards, Rangeway loyalty program, EV charging rewards, travel rewards, membership tiers"
     og_image: ""
   playbook:
-    title: "Pathfinder Rewards Playbook | Rangeway Energy"
+    title: "Pathfinder Rewards Playbook | Rangeway"
     description: "Comprehensive guide to the Pathfinder Rewards program - membership tiers, benefits, launch strategy, and operational guidelines."
     keywords: "Pathfinder playbook, loyalty program guide, membership benefits, Rangeway rewards"
     og_image: ""
