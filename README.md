@@ -40,8 +40,8 @@ The site will be available at `http://localhost:4000`
 5. Select folder: `/ (root)`
 6. Save
 
-### Custom Domain Setup (pathfinder.rangeway.energy)
-1. In repository Settings > Pages, set Custom domain to: `pathfinder.rangeway.energy`
+### Custom Domain Setup (rangeway.app)
+1. In repository Settings > Pages, set Custom domain to: `rangeway.app`
 2. Check "Enforce HTTPS"
 3. Add DNS records at your domain provider:
    - Type: CNAME
@@ -119,7 +119,7 @@ pathfinder-pages/
 ## Contact
 
 For questions about Pathfinder Rewards:
-- Email: hello@rangeway.energy
+- Email: hello@rangewayev.com
 - Phone: (650) 420-6300
 - Address: 2661 Market Street #87587, San Francisco, CA 94114
 

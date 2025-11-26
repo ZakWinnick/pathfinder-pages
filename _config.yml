@@ -4,16 +4,16 @@
 # Site settings
 title: Pathfinder Rewards | Rangeway
 description: "Earn benefits while exploring America's scenic highways. Join Rangeway's loyalty program for exclusive discounts, experiences, and community."
-url: "https://pathfinder.rangeway.energy"
+url: "https://rangeway.app"
 baseurl: ""
 
 # Organization info
 organization:
   name: Rangeway Energy, Inc.
   tagline: "Pathfinder Rewards - Explore More. Earn More."
-  main_site: "https://rangeway.energy"
+  main_site: "https://rangewayev.com"
   newsroom_site: "https://newsroom.rangeway.energy"
-  email: hello@rangeway.energy
+  email: hello@rangewayev.com
   phone: "(650) 420-6300"
   phone_raw: "6504206300"
   address:
